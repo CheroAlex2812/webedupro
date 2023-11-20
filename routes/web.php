@@ -78,8 +78,16 @@ Route::get('/teacher/excel', [DocentesController::class, 'excel'])->name('descar
 Route::get('/grade', [GradoController::class, 'index'])->name('grade.index');
 Route::get('/grade/create', [GradoController::class, 'create'])->name('grade.create');
 Route::post('/grade/create', [GradoController::class, 'store'])->name('grade.guardar');
-
+Route::get('/grade/{id}/edit', [GradoController::class, 'edit'])->name('grade.edit');
+Route::post('/grade/{id}', [GradoController::class, 'update'])->name('grade.update');
+Route::delete('/grade/delete/{id}', [GradoController::class, 'destroy'])->name('grade.destroy');
 
 
 ////////////////////////////////MODULO DE SECCION /////////////////////////////////////////////
 Route::get('/section', [SeccionController::class, 'index'])->name('section.index');
+Route::get('/section/create', [SeccionController::class, 'create'])->name('section.create');
+Route::get('/get-capacity/{gradoId}', [SeccionController::class, 'getCapacity']);
+Route::post('/section/create', [SeccionController::class, 'store'])->name('section.guardar');
+Route::get('/section/{id}/edit', [SeccionController::class, 'edit'])->name('section.edit');
+Route::post('/section/{id}', [SeccionController::class, 'update'])->name('section.update');
+Route::delete('/section/delete/{id}', [SeccionController::class, 'destroy'])->name('section.destroy');

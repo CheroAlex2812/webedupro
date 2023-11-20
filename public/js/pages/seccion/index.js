@@ -37,11 +37,55 @@ $(document).ready(function () {
         select: {
             style: "multi"
         },
-        order: [[2, "asc"]],
+        order: [[5, "asc"]],
         drawCallback: function () {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
             $("#grade-datatable_length label").addClass("form-label");
         }
     });
     
+});
+
+$(document).on('click', '.delete-button', function() {
+    const seccionId = $(this).data('seccion-id');
+    
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡No podrás deshacer esta acción!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/section/delete/' + seccionId,
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Eliminación exitosa
+                        
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Sección eliminado correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+
+                    } else {
+                        Swal.fire('Error', 'No se pudo eliminar la Sección.', 'error');
+                    }
+                }
+            });
+        }
+    });
 });

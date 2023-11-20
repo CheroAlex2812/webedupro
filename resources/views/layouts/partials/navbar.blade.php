@@ -72,7 +72,7 @@
                     <span> Académico </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse {{ request()->routeIs('grade.*') || request()->routeIs('seccion.*') || request()->routeIs('cursos.*') ? 'show' : '' }}" id="academico">
+                <div class="collapse {{ request()->routeIs('grade.*') || request()->routeIs('section.*') || request()->routeIs('cursos.*') ? 'show' : '' }}" id="academico">
                     <ul class="side-nav-second-level">
                         <li class="{{ request()->routeIs('grade.*') ? 'active' : '' }}">
                             <a href="{{route('grade.index')}}">

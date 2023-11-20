@@ -24,7 +24,7 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Agregar Sección</a>
+                        <a href="{{ route('section.create') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Agregar Sección</a>
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-end">
@@ -55,38 +55,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @foreach ($seccion as $seccion)
                             <tr>
                                 <td>
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="customCheck2">
-                                        <label class="form-check-label" for="customCheck2">&nbsp;</label>
+                                        <input type="checkbox" class="form-check-input" id="customCheck{{$seccion->id_seccion}}">
+                                        <label class="form-check-label" for="customCheck{{$seccion->id_seccion}}">&nbsp;</label>
                                     </div>
                                 </td>
                                 <td>
-                                    UNICA
+                                    {{$seccion->seccion}}
                                 </td>
                                 <td>
-                                    BASICA REGULAR
+                                    {{$seccion->categoria}}
                                 </td>
                                 <td>
-                                    40
+                                    {{$seccion->capacidad}}
                                 </td>
                                 <td>
-                                    ALEXANDER
+                                    {{$seccion->nombre_docente}}
                                 </td>
                                 <td>
-                                    PRIMER GRADO
+                                    {{$seccion->nombre_grado}}
                                 </td>
                                 <td>
-                                    PRIMARIA BASICA
+                                    {{$seccion->nota}}
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="{{ route('section.edit', $seccion->id_seccion) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+                                    <a href="javascript:void(0);" class="action-icon delete-button" data-seccion-id="{{ $seccion->id_seccion }}"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

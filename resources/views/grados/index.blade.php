@@ -76,15 +76,16 @@
                                     {{ $grado->cant_estudiante }}
                                 </td>
                                 <td>
-                                    UNICA
+                                    {{ $grado->secciones }}
                                 </td>
                                 <td>
                                     {{ $grado->nota }}
                                 </td>
 
                                 <td>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="{{ route('grade.edit', $grado->id_grado) }}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+                                    <a href="javascript:void(0);" class="action-icon delete-button" data-grado-id="{{ $grado->id_grado }}"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
                             @endforeach
